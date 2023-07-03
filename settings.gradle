@@ -1,0 +1,3 @@
+rootProject.name = 'LikiPay'
+include 'membership-service'
+
