@@ -1,5 +1,7 @@
 package com.likipay.membership.adapter.in.web;
 
+import com.likipay.membership.application.port.in.RegisterMemberShipCommand;
+import com.likipay.membership.application.port.in.RegisterMembershipUseCase;
 import common.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,8 @@ public class RegisterMembershipController {
   }
 
 
+  private final RegisterMembershipUseCase registerMembershipUseCase;
+
   @PostMapping("/membership/register")
   void registerMembership(@RequestBody RegisterMembershipRequest request) {
 
@@ -27,5 +31,17 @@ public class RegisterMembershipController {
     //request -> command
 
     // usecase -> (request)
+
+    RegisterMemberShipCommand command = RegisterMemberShipCommand.builder()
+            .name(request.getName())
+            .address(request.getAddress())
+            .email(request.getEmail())
+            .isValid(true)
+            .isCorp(request.isCorp())
+            .build();
+
+
+    registerMembershipUseCase.registerMembership(command);
+
   }
 }

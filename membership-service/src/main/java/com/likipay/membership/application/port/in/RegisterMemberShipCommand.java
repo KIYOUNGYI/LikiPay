@@ -1,6 +1,9 @@
 package com.likipay.membership.application.port.in;
 
 import common.SelfValidating;
+
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
@@ -14,15 +17,25 @@ public class RegisterMemberShipCommand extends SelfValidating<RegisterMemberShip
   @NotNull
   private final String name;
 
-//  private final String email;
-//
-//  private final String address;
+  @NotNull
+  private final String email;
 
+  @NotNull
+  @NotBlank
+  private final String address;
 
+  @AssertTrue
+  private final boolean isValid;
 
-  public RegisterMemberShipCommand(String name) {
+  private final boolean isCorp;
+
+  public RegisterMemberShipCommand(String name, String email, String address, boolean isValid, boolean isCorp) {
 
     this.name = name;
+    this.email = email;
+    this.address = address;
+    this.isValid = isValid;
+    this.isCorp = isCorp;
 
     this.validateSelf();
 
