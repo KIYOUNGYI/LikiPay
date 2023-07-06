@@ -1,4 +1,4 @@
-package com.likipay.membership;
+package com.likipay.membership.config;
 
 import java.util.Collections;
 import org.springframework.context.annotation.Bean;
@@ -12,32 +12,26 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-//@Configuration
+@Configuration
 //@EnableSwagger2
 public class SwaggerConfig {
 
   @Bean
-  public Docket restAPI() {
-
+  public Docket api() {
     return new Docket(DocumentationType.SWAGGER_2)
-        .useDefaultResponseMessages(false)
         .select()
-        .apis(RequestHandlerSelectors.any())
+        .apis(RequestHandlerSelectors.basePackage("com.likipay.membership"))
         .paths(PathSelectors.any())
         .build()
-        .apiInfo(new ApiInfo(
-            "Title",
-            "Description",
-            "1.0",
-            "Term of service URL",
-            new Contact("Contact name", "Contact URL", "Contact email"),
-            "License",
-            "License URL",
-            Collections.emptyList()
-        ));
+        .apiInfo(apiInfo());
   }
 
   private ApiInfo apiInfo() {
-    return new ApiInfoBuilder().build();
+    return new ApiInfoBuilder()
+        .title("Title")
+        .description("Description")
+        .version("1.0")
+        .contact(new Contact("Contact name", "Contact URL", "Contact email"))
+        .build();
   }
 }

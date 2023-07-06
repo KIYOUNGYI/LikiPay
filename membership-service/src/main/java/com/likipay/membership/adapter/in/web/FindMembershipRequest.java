@@ -7,8 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterMembershipRequest {
+public class FindMembershipRequest {
 
-  private String membershipId;
+  private String name;
+  private String address;
+  private String email;
+  private boolean isCorp;
 
 }
