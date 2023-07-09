@@ -3,9 +3,11 @@ package com.likipay.membership.domain;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 import lombok.Value;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
 public class Membership {
 
   @Getter
@@ -22,7 +24,7 @@ public class Membership {
   @Getter
   private final boolean isCorp;
 
-  public static Membership generateMember(
+  public static Membership generateMembership(
       MembershipId membershipId,
       MembershipName membershipName,
       MembershipEmail membershipEmail,

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterMembershipRequest {
+public class ModifyMembershipRequest {
 
   private String membershipId;
 

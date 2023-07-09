@@ -1,7 +1,6 @@
 package com.likipay.membership.application.port.in;
 
 import common.SelfValidating;
-
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,7 +13,11 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ToString
-public class RegisterMemberShipCommand extends SelfValidating<RegisterMemberShipCommand> {
+public class ModifyMemberShipCommand extends SelfValidating<RegisterMemberShipCommand> {
+
+
+  @NotNull
+  private final String membershipId;
 
   @NotNull
   private final String name;
@@ -31,17 +34,13 @@ public class RegisterMemberShipCommand extends SelfValidating<RegisterMemberShip
 
   private final boolean isCorp;
 
-  public RegisterMemberShipCommand(String name, String email, String address, boolean isValid, boolean isCorp) {
-
+  public ModifyMemberShipCommand(String membershipId, String name, String email, String address, boolean isValid, boolean isCorp) {
+    this.membershipId = membershipId;
     this.name = name;
     this.email = email;
     this.address = address;
     this.isValid = isValid;
     this.isCorp = isCorp;
-
     this.validateSelf();
-
   }
-
-
 }

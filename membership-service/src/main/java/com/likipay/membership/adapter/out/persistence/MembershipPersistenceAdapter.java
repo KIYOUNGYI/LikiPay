@@ -1,6 +1,7 @@
 package com.likipay.membership.adapter.out.persistence;
 
 import com.likipay.membership.application.port.out.FindMembershipPort;
+import com.likipay.membership.application.port.out.ModifyMembershipPort;
 import com.likipay.membership.application.port.out.RegisterMembershipPort;
 import com.likipay.membership.domain.Membership;
 import com.likipay.membership.domain.Membership.MembershipAddress;
@@ -14,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class MembershipPersistenceAdapter implements RegisterMembershipPort, FindMembershipPort {
+public class MembershipPersistenceAdapter implements RegisterMembershipPort, FindMembershipPort, ModifyMembershipPort {
 
   private final SpringDataMembershipRepository membershipRepository;
 
@@ -42,5 +43,19 @@ public class MembershipPersistenceAdapter implements RegisterMembershipPort, Fin
     MembershipJpaEntity byId = membershipRepository.getById(Long.parseLong(membershipId.getMembershipId()));
 
     return byId;
+  }
+
+  @Override
+  public MembershipJpaEntity modifyMembership(MembershipId membershipId, MembershipName membershipName, MembershipEmail membershipEmail, MembershipAddress membershipAddress,
+      MembershipIsValid membershipIsValid, MembershipIsCorp membershipIsCorp) {
+
+    MembershipJpaEntity entity = membershipRepository.getById(Long.parseLong(membershipId.getMembershipId()));
+    entity.setName(membershipName.getName());
+    entity.setAddress(membershipAddress.getAddressValue());
+    entity.setEmail(membershipEmail.getEmailValue());
+    entity.setCorp(membershipIsCorp.isCorpValue());
+    entity.setValid(membershipIsValid.isValidValue());
+
+    return membershipRepository.save(entity);
   }
 }
