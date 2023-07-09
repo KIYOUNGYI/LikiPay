@@ -1,4 +1,4 @@
-package common;
+package com.likipay.common;
 
 
 import java.lang.annotation.Documented;

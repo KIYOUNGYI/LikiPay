@@ -3,7 +3,7 @@ package com.likipay.membership.adapter.in.web;
 import com.likipay.membership.application.port.in.FindMembershipCommand;
 import com.likipay.membership.application.port.in.FindMembershipUseCase;
 import com.likipay.membership.domain.Membership;
-import common.WebAdapter;
+import com.likipay.common.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

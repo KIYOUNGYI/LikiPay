@@ -1,6 +1,6 @@
 package com.likipay.membership.application.port.in;
 
-import common.SelfValidating;
+import com.likipay.common.SelfValidating;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;

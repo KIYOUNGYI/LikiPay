@@ -5,7 +5,7 @@ import com.likipay.membership.application.port.in.ModifyMembershipUseCase;
 import com.likipay.membership.application.port.in.RegisterMemberShipCommand;
 import com.likipay.membership.application.port.in.RegisterMembershipUseCase;
 import com.likipay.membership.domain.Membership;
-import common.WebAdapter;
+import com.likipay.common.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class ModifyMembershipController {
-
-  @GetMapping("/test")
-  public void test() {
-
-    System.out.println("hello world!");
-  }
-
 
   private final ModifyMembershipUseCase modifyMembershipUseCase;
 

@@ -15,7 +15,7 @@ import com.likipay.membership.domain.Membership.MembershipId;
 import com.likipay.membership.domain.Membership.MembershipIsCorp;
 import com.likipay.membership.domain.Membership.MembershipIsValid;
 import com.likipay.membership.domain.Membership.MembershipName;
-import common.UseCase;
+import com.likipay.common.UseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

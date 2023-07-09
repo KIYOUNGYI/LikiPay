@@ -1,16 +1,15 @@
 package com.likipay.membership.adapter.out.persistence;
 
+import com.likipay.common.PersistenceAdapter;
 import com.likipay.membership.application.port.out.FindMembershipPort;
 import com.likipay.membership.application.port.out.ModifyMembershipPort;
 import com.likipay.membership.application.port.out.RegisterMembershipPort;
-import com.likipay.membership.domain.Membership;
 import com.likipay.membership.domain.Membership.MembershipAddress;
 import com.likipay.membership.domain.Membership.MembershipEmail;
 import com.likipay.membership.domain.Membership.MembershipId;
 import com.likipay.membership.domain.Membership.MembershipIsCorp;
 import com.likipay.membership.domain.Membership.MembershipIsValid;
 import com.likipay.membership.domain.Membership.MembershipName;
-import common.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 
 @PersistenceAdapter

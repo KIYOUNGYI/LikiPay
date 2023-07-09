@@ -7,7 +7,7 @@ import com.likipay.membership.application.port.in.FindMembershipUseCase;
 import com.likipay.membership.application.port.out.FindMembershipPort;
 import com.likipay.membership.domain.Membership;
 import com.likipay.membership.domain.Membership.MembershipId;
-import common.UseCase;
+import com.likipay.common.UseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 

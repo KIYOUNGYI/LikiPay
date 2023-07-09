@@ -1,4 +1,4 @@
-package common;
+package com.likipay.common;
 
 
 import java.lang.annotation.Documented;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
-public @interface WebAdapter {
+public @interface UseCase {
 
   @AliasFor(annotation = Component.class)
   String value() default "";
