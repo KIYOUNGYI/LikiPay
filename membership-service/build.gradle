@@ -21,7 +21,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group 'com.likipay.membership'
-version '1.0-SNAPSHOT'
+version '1.0.4'
 
 repositories {
     mavenCentral()
@@ -53,7 +53,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
-    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 //그래들 과정에서 도커라이징 한다?
@@ -64,7 +66,7 @@ docker {
     name project.name + ":" + version
 
     //어떤 Dockerfile
-    dockerfile file('./Dockerfile')
+    dockerfile file('../Dockerfile')//상대경로
 
     //어떤 파일들을 Dockerfile 에 복사할 것인가
     files tasks.bootJar.outputs.files
