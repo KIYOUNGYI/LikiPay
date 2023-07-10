@@ -7,16 +7,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterMembershipRequest {
+public class RegistereBankAccountRequest {
 
   private String membershipId;
 
-  private String name;
+  private String bankName;
 
-  private String address;
+  private String bankAccountNumber;
 
-  private String email;
-
-  private boolean isCorp;
+  private boolean isValid;
 
 }

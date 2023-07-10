@@ -13,7 +13,7 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ToString
-public class ModifyMemberShipCommand extends SelfValidating<RegisterMemberShipCommand> {
+public class ModifyMemberShipCommand extends SelfValidating<RegisterBankAccountCommand> {
 
 
   @NotNull
