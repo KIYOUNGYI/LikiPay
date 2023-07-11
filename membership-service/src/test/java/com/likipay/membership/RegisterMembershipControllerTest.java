@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
-@SpringBootTest
+@SpringBootTest(classes = MembershipApplication.class)
 @AutoConfigureMockMvc
 public class RegisterMembershipControllerTest {
 
@@ -45,9 +45,9 @@ public class RegisterMembershipControllerTest {
     );
 
     mockMvc.perform(MockMvcRequestBuilders.post("/membership/register")
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(mapper.writeValueAsString(command))
-    ).andExpect(MockMvcResultMatchers.status().isOk())
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(mapper.writeValueAsString(command))
+        ).andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.content().string(mapper.writeValueAsString(membership)));
     ;
   }

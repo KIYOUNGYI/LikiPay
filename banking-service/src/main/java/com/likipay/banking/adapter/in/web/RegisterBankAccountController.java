@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class RegisterBankAccountController {
 
 
-
   private final RegisterBankAccountUseCase registerMembershipUseCase;
 
-  @PostMapping("/membership/register")
+  @PostMapping("/banking/account/register")
   RegisteredBankAccount registerMembership(@RequestBody RegistereBankAccountRequest request) {
 
     //request~~
@@ -34,7 +33,12 @@ public class RegisterBankAccountController {
         .isValid(request.isValid())
         .build();
 
-    return registerMembershipUseCase.registerBankAccount(command);
+    RegisteredBankAccount registeredBankAccount = registerMembershipUseCase.registerBankAccount(command);
 
+    if (registeredBankAccount == null) {
+      //TODO : Error handling
+      return null;
+    }
+    return registeredBankAccount;
   }
 }
