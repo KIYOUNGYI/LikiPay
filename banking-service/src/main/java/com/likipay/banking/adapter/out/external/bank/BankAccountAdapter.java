@@ -12,6 +12,10 @@ public class BankAccountAdapter implements RequestBankAccountInfoPort {
 
   @Override
   public BankAccount getBankAccountInfo(GetBankAccountRequest request) {
+
+    //실제 외부 은행에 http 통해서
+    //실제 은행 계좌 가져오는게 FM 이나 편의상 이리 구현
+
     return new BankAccount(request.getBankName(), request.getBankAccountNumber(), true);
   }
 }

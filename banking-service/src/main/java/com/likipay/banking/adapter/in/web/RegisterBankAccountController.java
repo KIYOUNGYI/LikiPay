@@ -1,6 +1,6 @@
 package com.likipay.banking.adapter.in.web;
 
-import com.likipay.banking.application.port.in.RegisterBankAccountCommand;
+import com.likipay.banking.application.port.in.FirmBankingRequestCommand;
 import com.likipay.banking.application.port.in.RegisterBankAccountUseCase;
 import com.likipay.banking.domain.RegisteredBankAccount;
 import com.likipay.common.WebAdapter;
@@ -26,7 +26,7 @@ public class RegisterBankAccountController {
 
     // usecase -> (request)
 
-    RegisterBankAccountCommand command = RegisterBankAccountCommand.builder()
+    FirmBankingRequestCommand command = FirmBankingRequestCommand.builder()
         .membershipId(request.getMembershipId())
         .bankName(request.getBankName())
         .bankAccountNumber(request.getBankAccountNumber())
