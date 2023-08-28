@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegistereBankAccountRequest {
+public class RegisterBankingAccountInfoRequest {
 
   private String membershipId;
 

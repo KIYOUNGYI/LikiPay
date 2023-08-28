@@ -53,9 +53,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
-//    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.h2database:h2'
 //    runtimeOnly 'mysql:mysql-connector-java'
-    runtimeOnly 'com.mysql:mysql-connector-j'
+//    runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 //그래들 과정에서 도커라이징 한다?
