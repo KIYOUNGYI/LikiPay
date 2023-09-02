@@ -1,5 +1,7 @@
 package com.likipay.banking.adapter.out.persistence;
 
+
+import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,10 +11,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "request_firmbanking")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "request_firmbanking")
 public class FirmBankingRequestJpaEntity {
 
   @Id
@@ -20,21 +22,26 @@ public class FirmBankingRequestJpaEntity {
   private Long requestFirmBankingId;
 
   private String fromBankName;
+
   private String fromBankAccountNumber;
+
   private String toBankName;
+
   private String toBankAccountNumber;
 
-  private int moneyAmount;
+  private int moneyAmount; // only won
 
-  private int firmBankingStatus;
+  private int firmBankingStatus;//0: 요청 , 1: 완료, 2: 실패
 
+  private String uuid;
 
-  public FirmBankingRequestJpaEntity(String fromBankName, String fromBankAccountNumber, String toBankName, String toBankAccountNumber, int moneyAmount, int firmBankingStatus) {
+  public FirmBankingRequestJpaEntity(String fromBankName, String fromBankAccountNumber, String toBankName, String toBankAccountNumber, int moneyAmount, int firmBankingStatus, UUID uuid) {
     this.fromBankName = fromBankName;
     this.fromBankAccountNumber = fromBankAccountNumber;
     this.toBankName = toBankName;
     this.toBankAccountNumber = toBankAccountNumber;
     this.moneyAmount = moneyAmount;
     this.firmBankingStatus = firmBankingStatus;
+    this.uuid = uuid.toString();
   }
 }

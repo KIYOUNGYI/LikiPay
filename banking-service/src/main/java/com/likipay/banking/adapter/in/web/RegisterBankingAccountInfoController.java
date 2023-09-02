@@ -18,7 +18,7 @@ public class RegisterBankingAccountInfoController {
   private final RegisterBankAccountUseCase registerBankAccountUseCase;
 
   @PostMapping("/banking/account")
-  void registerBankingAccount(@RequestBody RegisterBankingAccountInfoRequest request) {
+  RegisteredBankAccount registerBankingAccount(@RequestBody RegisterBankingAccountInfoRequest request) {
 
     RegisterBankAccountCommand command = RegisterBankAccountCommand.builder()
         .membershipId(request.getMembershipId())
@@ -28,5 +28,10 @@ public class RegisterBankingAccountInfoController {
         .build();
 
     RegisteredBankAccount registeredBankAccount = registerBankAccountUseCase.registerBankAccount(command);
+    if (registeredBankAccount == null) {
+      //TODO : Error Handling
+      return null;
+    }
+    return registerBankAccountUseCase.registerBankAccount(command);
   }
 }
