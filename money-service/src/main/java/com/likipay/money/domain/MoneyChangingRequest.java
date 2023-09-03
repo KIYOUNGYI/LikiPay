@@ -21,13 +21,13 @@ public class MoneyChangingRequest {
 
   // 그 요청이 증액 요청인지 / 감액 요청인지
   @Getter
-  private final ChangingType changingType;//enum 0 : 증액, 1 : 감액
+  private final int changingType;//enum 0 : 증액, 1 : 감액
 
-  enum ChangingType {
-    INCREASING,//증액
-    DECREASING//감액
-
-  }
+//  enum ChangingType {
+//    INCREASING,//증액
+//    DECREASING//감액
+//
+//  }
 
   //증액 또는 감액 요청의 금액
   @Getter
@@ -35,16 +35,16 @@ public class MoneyChangingRequest {
 
   // 머니 변액 요청에 대한 상태
   @Getter
-  private final ChangingMoneyStatus changingMoneyStatus;//enum
+  private final int changingMoneyStatus;//enum
 
-  enum ChangingMoneyStatus {
-
-    REQUESTED,//요청됨
-    SUCCEEDED,//성공
-    FAILED,//실패
-    CANCELLED//취소됨
-
-  }
+//  enum ChangingMoneyStatus {
+//
+//    REQUESTED,//요청됨
+//    SUCCEEDED,//성공
+//    FAILED,//실패
+//    CANCELLED//취소됨
+//
+//  }
 
   @Getter
   private final String uuid;
@@ -64,10 +64,9 @@ public class MoneyChangingRequest {
 
 
     return new MoneyChangingRequest(
-
         moneyChangingRequestId.getMoneyChangingRequestId(),
         targetMembershipId.getTargetMembershipId(),
-        moneyChangingType.getChangingType(),
+        moneyChangingType.getMoneyChangingType(),
         Integer.parseInt(String.valueOf(changingMoneyAmount.getChangingMoneyAmount())),
         moneyChangingStatus.getChangingMoneyStatus(),
         uuid.getUuid(),
@@ -100,22 +99,22 @@ public class MoneyChangingRequest {
   @Value
   public static class MoneyChangingType {
 
-    public MoneyChangingType(ChangingType value) {
-      this.changingType = value;
+    public MoneyChangingType(int value) {
+      this.moneyChangingType = value;
     }
 
-    ChangingType changingType;
+    int moneyChangingType;
 
   }
 
   @Value
   public static class MoneyChangingStatus {
 
-    public MoneyChangingStatus(ChangingMoneyStatus value) {
+    public MoneyChangingStatus(int value) {
       this.changingMoneyStatus = value;
     }
 
-    ChangingMoneyStatus changingMoneyStatus;
+    int changingMoneyStatus;
   }
 
   @Value

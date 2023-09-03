@@ -7,14 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterBankingAccountInfoRequest {
+public class DecreaseMoneyChangingRequest {
 
-  private String membershipId;
+  private String targetMembershipId;
 
-  private String bankName;
-
-  private String bankAccountNumber;
-
-  private boolean isValid;
+  private int amount;
 
 }
