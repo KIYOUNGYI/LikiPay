@@ -2,71 +2,129 @@ version: '3'
 services:
 
 
-  mysql:
-    image: mysql:8.0
-    networks:
-      - my_network
-    volumes:
-      - ./db/conf.d:/etc/mysql/conf.d
-      - ./db/data:/var/lib/mysql
-      - ./db/initdb.d:/docker-entrypoint-initdb.d
-    env_file: .env
-    ports:
-      - "3306:3306"
-    environment:
-      - TZ=Asia/Seoul
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_USER=mysqluser
-      - MYSQL_PASSWORD=mysqlpw
+#  mysql:
+#    image: mysql:8.0
+#    networks:
+#      - my_network
+#    volumes:
+#      - ./db/conf.d:/etc/mysql/conf.d
+#      - ./db/data:/var/lib/mysql
+#      - ./db/initdb.d:/docker-entrypoint-initdb.d
+#    env_file: .env
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      - TZ=Asia/Seoul
+#      - MYSQL_ROOT_PASSWORD=rootpassword
+#      - MYSQL_USER=mysqluser
+#      - MYSQL_PASSWORD=mysqlpw
+#
+#  membership-service:
+#    image: membership-service:1.0.4
+#    networks:
+#      - my_network
+#    ports:
+#      - "8081:8080"#왼쪽 : os 레벨에서 컨테이너까지 어떤 포트로 매핑될 것인지 / 오른쪽 : 컨테이너 안에 있는 실제 어플리케이션 포트
+#    depends_on:
+#      - mysql
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/liki_pay?useSSL=false&allowPublicKeyRetrieval=true
+#      - SPRING_DATASOURCE_USERNAME=mysqluser
+#      - SPRING_DATASOURCE_PASSWORD=mysqlpw
+#      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#  banking-service:
+#    image: banking-service:1.0.4
+#    networks:
+#      - my_network
+#    ports:
+#      - "8082:8080"#왼쪽 : os 레벨에서 컨테이너까지 어떤 포트로 매핑될 것인지 / 오른쪽 : 컨테이너 안에 있는 실제 어플리케이션 포트
+#    depends_on:
+#      - mysql
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/liki_pay?useSSL=false&allowPublicKeyRetrieval=true
+#      - SPRING_DATASOURCE_USERNAME=mysqluser
+#      - SPRING_DATASOURCE_PASSWORD=mysqlpw
+#      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#
+#  money-service:
+#    image: money-service:1.0.4
+#    networks:
+#      - my_network
+#    ports:
+#      - "8083:8080"
+#    depends_on:
+#      - mysql
+#    environment:
+##      - AXON_AXONSERVER_SERVERS=axon-server:8124
+##      - AXON_SERIALIZER_EVENTS=jackson
+##      - AXON_SERIALIZER_MESSAGES=jackson
+##      - AXON_SERIALIZER_GENERAL=xstream
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/liki_pay?useSSL=false&allowPublicKeyRetrieval=true
+#      - SPRING_DATASOURCE_USERNAME=mysqluser
+#      - SPRING_DATASOURCE_PASSWORD=mysqlpw
+#      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
 
-  membership-service:
-    image: membership-service:1.0.4
-    networks:
-      - my_network
-    ports:
-      - "8081:8080"#왼쪽 : os 레벨에서 컨테이너까지 어떤 포트로 매핑될 것인지 / 오른쪽 : 컨테이너 안에 있는 실제 어플리케이션 포트
-    depends_on:
-      - mysql
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/liki_pay?useSSL=false&allowPublicKeyRetrieval=true
-      - SPRING_DATASOURCE_USERNAME=mysqluser
-      - SPRING_DATASOURCE_PASSWORD=mysqlpw
-      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-  banking-service:
-    image: banking-service:1.0.4
-    networks:
-      - my_network
-    ports:
-      - "8082:8080"#왼쪽 : os 레벨에서 컨테이너까지 어떤 포트로 매핑될 것인지 / 오른쪽 : 컨테이너 안에 있는 실제 어플리케이션 포트
-    depends_on:
-      - mysql
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/liki_pay?useSSL=false&allowPublicKeyRetrieval=true
-      - SPRING_DATASOURCE_USERNAME=mysqluser
-      - SPRING_DATASOURCE_PASSWORD=mysqlpw
-      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
-  money-service:
-    image: money-service:1.0.4
+  likipay-zookeeper-1:
+    image: 'arm64v8/zookeeper:3.8'
     networks:
       - my_network
     ports:
-      - "8083:8080"
-    depends_on:
-      - mysql
+      - '2181:2181'
     environment:
-#      - AXON_AXONSERVER_SERVERS=axon-server:8124
-#      - AXON_SERIALIZER_EVENTS=jackson
-#      - AXON_SERIALIZER_MESSAGES=jackson
-#      - AXON_SERIALIZER_GENERAL=xstream
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/liki_pay?useSSL=false&allowPublicKeyRetrieval=true
-      - SPRING_DATASOURCE_USERNAME=mysqluser
-      - SPRING_DATASOURCE_PASSWORD=mysqlpw
-      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL5InnoDBDialect
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - ZOO_TLS_CLIENT_AUTH=none
+      - ZOO_TLS_QUORUM_CLIENT_AUTH=none
 
+  my_kafka:
+#    image: 'bitnami/kafka:3.4.0'
+    image: docker.io/bitnami/kafka:3.4.0
+    networks:
+      - my_network
+    ports:
+      - '9092:9092'
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=likipay-zookeeper-1:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_LISTENERS=LC://my_kafka:29092,LX://my_kafka:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=LC://my_kafka:29092,LX://${DOCKER_HOST_IP:-localhost}:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=LC:PLAINTEXT,LX:PLAINTEXT
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=LC
+    depends_on:
+      - likipay-zookeeper-1
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    networks:
+      - my_network
+    ports:
+      - "8989:8080"
+    restart: always
+    depends_on:
+      - my_kafka
+      - likipay-zookeeper-1
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=my_kafka:29092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=likipay-zookeeper-1:2181
+
+
+#  logging-consumer:
+#    image: fastcampus-pay-logging-consumer:1.0.0
+#    networks:
+#      - my_network
+#    restart: always
+#    depends_on:
+#      - kafka
+#      - zookeeper
+#    environment:
+#      - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+#      - LOGGING_TOPIC=fastcampus.logging.out.stdout
 networks:
   my_network:
     driver: bridge

@@ -2,6 +2,7 @@ package com.likipay.money.adapter.out.persistence;
 
 import com.likipay.money.domain.MoneyChangingRequest.Uuid;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class MoneyChangingRequestJpaEntity {
   private int moneyAmount;
 
   @Temporal(TemporalType.TIMESTAMP)
-  private Timestamp timestamp;
+  private Date timestamp;
 
   private int changingMoneyStatus;// 0: 요청, 1 : 성공, 2: 실패
 

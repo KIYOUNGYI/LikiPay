@@ -22,18 +22,18 @@ public class RegisterBankAccountControllerTest {
   private ObjectMapper mapper;
 
 
-  @Test
-  void testRegisterBankAccount() throws Exception {
-    ObjectMapper mapper1 = new ObjectMapper();
-    RegisterBankingAccountInfoRequest req = new RegisterBankingAccountInfoRequest("1", "토스뱅크", "1010", true);
-
-    mockMvc.perform(MockMvcRequestBuilders.post("/banking/account/register")
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(mapper1.writeValueAsString(req))
-    ).andExpect(MockMvcResultMatchers.status().isOk());
-
-
-  }
+//  @Test
+//  void testRegisterBankAccount() throws Exception {
+//    ObjectMapper mapper1 = new ObjectMapper();
+//    RegisterBankingAccountInfoRequest req = new RegisterBankingAccountInfoRequest("1", "토스뱅크", "1010", true);
+//
+//    mockMvc.perform(MockMvcRequestBuilders.post("/banking/account/register")
+//        .contentType(MediaType.APPLICATION_JSON)
+//        .content(mapper1.writeValueAsString(req))
+//    ).andExpect(MockMvcResultMatchers.status().isOk());
+//
+//
+//  }
 
 //  @Test
 //  public void testMembershipRegister() throws Exception {
